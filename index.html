@@ -1,0 +1,2433 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3º COMANDO REGIONAL - CBMGO</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      /* Paleta de Cores */
+      --primary-red: #B30000;
+      --primary-red-hover: #8F0000;
+      --primary-red-soft: #FEF2F2;
+      --accent-orange: #FF6A00;
+      --accent-orange-dark: #E05A00;
+      --header-bg: #F3F4F6;
+      --nav-bg: #B30000;
+      --body-bg: #D5D7DA;
+      --surface-white: #FFFFFF;
+      --card-bg: #F8FAFC;
+      --footer-bg: #F3F4F6;
+      --border-color: #CBD5E1;
+      --border-strong: #94A3B8;
+      --text-primary: #111827;
+      --text-secondary: #374151;
+      --text-muted: #6B7280;
+      --status-green-dot: #10B981;
+      --status-green-text: #15803D;
+      --status-green-bg: #DCFCE7;
+      --status-red-text: #B30000;
+      --status-red-bg: #FEE2E2;
+      --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.08);
+      --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+      --shadow-card: 0 3px 10px rgba(15, 23, 42, 0.06);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background-color: var(--body-bg);
+      color: var(--text-primary);
+      display: flex;
+      flex-direction: column;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Texto acessível apenas para leitores de tela */
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    /* ================= TOP HEADER ================= */
+    .top-header {
+      background-color: var(--header-bg);
+      border-bottom: 1px solid #DCDEE2;
+      padding: 10px 24px;
+    }
+
+    .header-container {
+      max-width: 1440px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    /* Logo Esquerda */
+    .brand-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 170px;
+    }
+
+    .logo-left-img {
+      height: 48px;
+      width: auto;
+      object-fit: contain;
+      display: block;
+    }
+
+    .brand-subtext {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.2;
+    }
+
+    .brand-subtext span:first-child {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--text-muted);
+      letter-spacing: 0.04em;
+    }
+
+    .brand-subtext span:last-child {
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--primary-red);
+      letter-spacing: 0.02em;
+    }
+
+    /* Título Central com Imagem */
+    .header-title-box {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .header-title-img {
+      max-height: 76px;
+      width: auto;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.08));
+    }
+
+    /* Logo Direita */
+    .brand-right {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      min-width: 170px;
+    }
+
+    .logo-right-img {
+      height: 66px;
+      width: auto;
+      object-fit: contain;
+      display: block;
+    }
+
+    /* ================= BARRA DE NAVEGAÇÃO ================= */
+    .navbar {
+      background-color: var(--nav-bg);
+      border-bottom: 2px solid #8A0000;
+      box-shadow: 0 2px 6px rgba(179, 0, 0, 0.22);
+      padding: 0 24px;
+      position: relative;
+      z-index: 50;
+    }
+
+    .nav-container {
+      max-width: 1440px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 0;
+      flex-wrap: wrap;
+    }
+
+    .nav-item {
+      position: relative;
+      background: transparent;
+      border: none;
+      border-radius: 7px;
+      padding: 10px 18px;
+      font-family: inherit;
+      font-size: 13px;
+      font-weight: 800;
+      color: #FFFFFF;
+      letter-spacing: 0.04em;
+      cursor: pointer;
+      transition: color 0.2s ease, background-color 0.2s ease, transform 0.15s ease;
+      white-space: nowrap;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .nav-item:hover {
+      background-color: rgba(255, 255, 255, 0.14);
+      color: #FFFFFF;
+    }
+
+    .nav-item.active {
+      background-color: var(--accent-orange);
+      color: #FFFFFF;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .nav-item.active:hover {
+      background-color: var(--accent-orange-dark);
+      color: #FFFFFF;
+    }
+
+    /* Dropdown (Menu Suspenso) */
+    .nav-dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .dropdown-caret {
+      width: 14px;
+      height: 14px;
+      transition: transform 0.2s ease;
+      flex-shrink: 0;
+    }
+
+    .nav-dropdown:hover .dropdown-caret,
+    .nav-dropdown.open .dropdown-caret {
+      transform: rotate(180deg);
+    }
+
+    .dropdown-menu {
+      position: absolute;
+      top: calc(100% + 6px);
+      left: 0;
+      min-width: 230px;
+      background-color: var(--surface-white);
+      border: 1px solid #CBD5E1;
+      border-top: 3px solid var(--accent-orange);
+      border-radius: 9px;
+      box-shadow: 0 10px 25px rgba(15, 23, 42, 0.16);
+      padding: 6px;
+      display: none;
+      flex-direction: column;
+      gap: 3px;
+      z-index: 100;
+      animation: fadeDrop 0.15s ease-out;
+    }
+
+    .dropdown-menu::before {
+      content: '';
+      position: absolute;
+      top: -10px;
+      left: 0;
+      right: 0;
+      height: 10px;
+    }
+
+    @keyframes fadeDrop {
+      from {
+        opacity: 0;
+        transform: translateY(-4px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .nav-dropdown:hover .dropdown-menu,
+    .nav-dropdown.open .dropdown-menu {
+      display: flex;
+    }
+
+    .dropdown-item {
+      width: 100%;
+      background: transparent;
+      border: none;
+      border-radius: 6px;
+      padding: 10px 14px;
+      text-align: left;
+      font-family: inherit;
+      font-size: 12.5px;
+      font-weight: 700;
+      color: var(--text-primary);
+      letter-spacing: 0.03em;
+      cursor: pointer;
+      transition: background-color 0.15s ease, color 0.15s ease;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .dropdown-item:hover {
+      background-color: var(--primary-red-soft);
+      color: var(--primary-red);
+    }
+
+    .dropdown-item.active {
+      background-color: var(--accent-orange);
+      color: #FFFFFF;
+    }
+
+    /* Pill de Status da Planilha na Barra de Menu */
+    .sync-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background-color: var(--surface-white);
+      border: 1px solid #FCA5A5;
+      border-radius: 999px;
+      padding: 5px 12px;
+      font-size: 11.5px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      box-shadow: var(--shadow-sm);
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s ease;
+    }
+
+    .sync-pill:hover {
+      border-color: #FFFFFF;
+      background-color: #FFF5F5;
+    }
+
+    .sync-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background-color: var(--status-green-dot);
+    }
+
+    .sync-dot.loading {
+      background-color: var(--accent-orange);
+      animation: pulseDot 0.9s infinite alternate;
+    }
+
+    .sync-dot.error {
+      background-color: var(--primary-red);
+    }
+
+    @keyframes pulseDot {
+      from { opacity: 0.35; }
+      to { opacity: 1; }
+    }
+
+    .sync-icon {
+      width: 12px;
+      height: 12px;
+      color: var(--text-muted);
+    }
+
+    /* ================= ÁREA PRINCIPAL ================= */
+    .main-wrapper {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      padding: 24px;
+    }
+
+    .main-white-canvas {
+      flex: 1;
+      width: 100%;
+      max-width: 1440px;
+      margin: 0 auto;
+      background-color: var(--surface-white);
+      border-radius: 14px;
+      box-shadow: var(--shadow-md);
+      border: 1px solid #E5E7EB;
+      padding: 28px 24px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ================= ORGANOGRAMA / UNIDADES (HOME) ================= */
+    .section-header {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+
+    .section-title {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--text-primary);
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    .section-subtitle {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    /* Card de Destaque: Comando Regional */
+    .regional-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+
+    .regional-card {
+      width: 100%;
+      max-width: 680px;
+      background: linear-gradient(180deg, #FFFFFF 0%, #F9FAFB 100%);
+      border: 1px solid #CBD5E1;
+      border-top: 5px solid var(--primary-red);
+      border-radius: 12px;
+      padding: 20px 24px;
+      box-shadow: 0 6px 18px rgba(179, 0, 0, 0.08);
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .regional-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 24px rgba(179, 0, 0, 0.12);
+    }
+
+    .regional-photo-frame {
+      width: 112px;
+      height: 134px;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 2px solid var(--primary-red);
+      background-color: #E2E8F0;
+      flex-shrink: 0;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12);
+    }
+
+    .regional-photo-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      display: block;
+    }
+
+    .regional-details {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .unit-top-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .unit-tag {
+      display: inline-block;
+      background-color: var(--primary-red);
+      color: #FFFFFF;
+      font-size: 10.5px;
+      font-weight: 800;
+      padding: 3px 9px;
+      border-radius: 5px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .sei-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background-color: #EEF2FF;
+      color: #1E3A8A;
+      border: 1px solid #C7D2FE;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 9px;
+      border-radius: 6px;
+    }
+
+    .regional-unit-name {
+      font-size: 16.5px;
+      font-weight: 800;
+      color: var(--text-primary);
+      line-height: 1.3;
+    }
+
+    .commander-role {
+      font-size: 11.5px;
+      font-weight: 700;
+      color: var(--primary-red);
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      margin-top: 2px;
+    }
+
+    .commander-name {
+      font-size: 14.5px;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .contact-list {
+      margin-top: 6px;
+      padding-top: 8px;
+      border-top: 1px solid #E2E8F0;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      font-size: 12.5px;
+      color: var(--text-secondary);
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .contact-item svg {
+      width: 14px;
+      height: 14px;
+      color: var(--primary-red);
+      flex-shrink: 0;
+    }
+
+    .contact-item a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .contact-item a:hover {
+      color: var(--primary-red);
+      text-decoration: underline;
+    }
+
+    /* Conector Visual do Organograma */
+    .org-connector {
+      width: 100%;
+      max-width: 1120px;
+      height: 34px;
+      position: relative;
+      display: flex;
+      justify-content: center;
+    }
+
+    .org-connector::before {
+      content: '';
+      width: 2px;
+      height: 17px;
+      background-color: #94A3B8;
+    }
+
+    .org-connector::after {
+      content: '';
+      position: absolute;
+      top: 17px;
+      left: 10%;
+      right: 10%;
+      height: 2px;
+      background-color: #94A3B8;
+    }
+
+    /* Grid das Unidades Subordinadas (OBMs) */
+    .units-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 18px;
+      margin-top: 4px;
+    }
+
+    .unit-card {
+      background-color: var(--card-bg);
+      border: 1px solid #D8DEE6;
+      border-top: 4px solid var(--primary-red);
+      border-radius: 11px;
+      padding: 18px 16px;
+      box-shadow: var(--shadow-card);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+
+    .unit-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(15, 23, 42, 0.1);
+      border-color: #BFC8D4;
+      background-color: #FFFFFF;
+    }
+
+    .unit-card-header {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+
+    .unit-sigla-pill {
+      background-color: var(--primary-red-soft);
+      color: var(--primary-red);
+      border: 1px solid #FECACA;
+      font-size: 11px;
+      font-weight: 800;
+      padding: 3px 8px;
+      border-radius: 6px;
+    }
+
+    .unit-photo-frame {
+      width: 96px;
+      height: 114px;
+      border-radius: 9px;
+      overflow: hidden;
+      border: 2px solid #CBD5E1;
+      background-color: #E2E8F0;
+      margin-bottom: 12px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    }
+
+    .unit-card:hover .unit-photo-frame {
+      border-color: var(--primary-red);
+    }
+
+    .unit-photo-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      display: block;
+    }
+
+    .unit-title {
+      font-size: 13.5px;
+      font-weight: 800;
+      color: var(--text-primary);
+      line-height: 1.35;
+      min-height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .unit-commander-box {
+      width: 100%;
+      background-color: #FFFFFF;
+      border: 1px solid #E2E8F0;
+      border-radius: 8px;
+      padding: 8px 10px;
+      margin: 10px 0;
+    }
+
+    .unit-commander-label {
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--primary-red);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 2px;
+    }
+
+    .unit-commander-name {
+      font-size: 12.5px;
+      font-weight: 700;
+      color: var(--text-primary);
+      line-height: 1.3;
+    }
+
+    .unit-contacts {
+      width: 100%;
+      margin-top: auto;
+      padding-top: 8px;
+      border-top: 1px dashed #CBD5E1;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      font-size: 11.5px;
+      color: var(--text-secondary);
+      text-align: left;
+    }
+
+    .unit-contacts .contact-item {
+      word-break: break-word;
+    }
+
+    /* ================= VIEW: VIATURAS ATIVAS (ABAS + LISTVIEW) ================= */
+    .view-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 20px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid #E5E7EB;
+    }
+
+    .view-title-block h2 {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--text-primary);
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    .view-title-block p {
+      font-size: 12.5px;
+      color: var(--text-muted);
+      margin-top: 3px;
+    }
+
+    .summary-badges {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .stat-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 700;
+      border: 1px solid #E2E8F0;
+      background-color: #F8FAFC;
+      color: var(--text-secondary);
+    }
+
+    .stat-chip.ativa {
+      background-color: var(--status-green-bg);
+      border-color: #86EFAC;
+      color: var(--status-green-text);
+    }
+
+    .stat-chip.baixada {
+      background-color: var(--status-red-bg);
+      border-color: #FECACA;
+      color: var(--status-red-text);
+    }
+
+    /* Sub-abas das Unidades */
+    .subtabs-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .subtabs-list {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .subtab-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 16px;
+      border-radius: 8px;
+      border: 1px solid #CBD5E1;
+      background-color: #F8FAFC;
+      color: var(--text-secondary);
+      font-family: inherit;
+      font-size: 12.5px;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+      cursor: pointer;
+      transition: all 0.18s ease;
+    }
+
+    .subtab-btn:hover {
+      border-color: var(--primary-red);
+      color: var(--primary-red);
+      background-color: var(--primary-red-soft);
+    }
+
+    .subtab-btn.active {
+      background-color: var(--primary-red);
+      border-color: var(--primary-red);
+      color: #FFFFFF;
+      box-shadow: 0 3px 8px rgba(179, 0, 0, 0.22);
+    }
+
+    .subtab-count {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 22px;
+      height: 20px;
+      padding: 0 6px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 800;
+      background-color: rgba(15, 23, 42, 0.08);
+      color: inherit;
+    }
+
+    .subtab-btn.active .subtab-count {
+      background-color: rgba(255, 255, 255, 0.22);
+      color: #FFFFFF;
+    }
+
+    /* Campo de Filtro Rápido */
+    .search-box {
+      position: relative;
+      min-width: 240px;
+      flex: 0 1 300px;
+    }
+
+    .search-box input {
+      width: 100%;
+      padding: 9px 12px 9px 34px;
+      border: 1px solid #CBD5E1;
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 12.5px;
+      color: var(--text-primary);
+      background-color: #F8FAFC;
+      transition: border-color 0.2s ease, background-color 0.2s ease;
+    }
+
+    .search-box input:focus {
+      outline: none;
+      border-color: var(--primary-red);
+      background-color: #FFFFFF;
+    }
+
+    .search-box svg {
+      position: absolute;
+      left: 11px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 15px;
+      height: 15px;
+      color: var(--text-muted);
+      pointer-events: none;
+    }
+
+    /* ListView (Tabela Estilizada) */
+    .listview-container {
+      width: 100%;
+      overflow-x: auto;
+      border: 1px solid #CBD5E1;
+      border-radius: 10px;
+      background-color: #FFFFFF;
+    }
+
+    .listview-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 13px;
+    }
+
+    .listview-table thead {
+      background-color: #F1F5F9;
+      border-bottom: 2px solid #CBD5E1;
+    }
+
+    .listview-table th {
+      padding: 12px 14px;
+      font-size: 11.5px;
+      font-weight: 800;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      white-space: nowrap;
+    }
+
+    .listview-table tbody tr {
+      border-bottom: 1px solid #E2E8F0;
+      transition: background-color 0.15s ease;
+    }
+
+    .listview-table tbody tr:last-child {
+      border-bottom: none;
+    }
+
+    .listview-table tbody tr:hover {
+      background-color: #F8FAFC;
+    }
+
+    .listview-table td {
+      padding: 12px 14px;
+      color: var(--text-primary);
+      vertical-align: middle;
+    }
+
+    /* Cores exigidas para a Coluna F (ATIVA = Verde / BAIXADA = Vermelho) */
+    .status-ativa {
+      color: var(--status-green-text);
+      background-color: var(--status-green-bg);
+      border: 1px solid #86EFAC;
+      font-weight: 800;
+      font-size: 11.5px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      display: inline-block;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+
+    .status-baixada {
+      color: var(--status-red-text);
+      background-color: var(--status-red-bg);
+      border: 1px solid #FCA5A5;
+      font-weight: 800;
+      font-size: 11.5px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      display: inline-block;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+
+    .status-outro {
+      font-weight: 700;
+      color: var(--text-secondary);
+    }
+
+    /* ================= VIEW: INSPEÇÃO TÉCNICA (EMBED INCORPORADO) ================= */
+    .embed-actions-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .btn-secondary-action {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 13px;
+      border-radius: 8px;
+      border: 1px solid #CBD5E1;
+      background-color: #F8FAFC;
+      color: var(--text-primary);
+      font-family: inherit;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.15s ease;
+    }
+
+    .btn-secondary-action:hover {
+      border-color: var(--primary-red);
+      color: var(--primary-red);
+      background-color: var(--primary-red-soft);
+    }
+
+    .embed-frame-wrapper {
+      position: relative;
+      flex: 1;
+      min-height: 720px;
+      width: 100%;
+      border: 1px solid #CBD5E1;
+      border-radius: 10px;
+      overflow: hidden;
+      background-color: #F8FAFC;
+      box-shadow: inset 0 1px 3px rgba(15, 23, 42, 0.05);
+    }
+
+    .embed-frame {
+      width: 100%;
+      height: 100%;
+      min-height: 720px;
+      border: 0;
+      display: block;
+      background-color: #FFFFFF;
+    }
+
+    .state-box {
+      padding: 42px 20px;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 13.5px;
+      line-height: 1.6;
+    }
+
+    .state-box.error {
+      color: var(--primary-red);
+      background-color: var(--primary-red-soft);
+      border-radius: 10px;
+      border: 1px solid #FECACA;
+    }
+
+    .state-box code {
+      background-color: rgba(15, 23, 42, 0.08);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: monospace;
+      font-size: 12px;
+      color: var(--text-primary);
+    }
+
+    .spinner {
+      width: 28px;
+      height: 28px;
+      border: 3px solid #E2E8F0;
+      border-top-color: var(--primary-red);
+      border-radius: 50%;
+      margin: 0 auto 12px;
+      animation: spin 0.8s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* ================= RODAPÉ INSTITUCIONAL ================= */
+    .site-footer {
+      background-color: var(--footer-bg);
+      border-top: 1px solid #C5C9D0;
+      padding: 14px 24px;
+      font-size: 12px;
+      color: var(--text-secondary);
+    }
+
+    .footer-container {
+      max-width: 1440px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .footer-info {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      line-height: 1.45;
+    }
+
+    .footer-info strong {
+      color: var(--text-primary);
+      font-weight: 700;
+    }
+
+    .footer-info a {
+      color: var(--primary-red);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .footer-info a:hover {
+      text-decoration: underline;
+    }
+
+    .footer-credits {
+      text-align: right;
+      color: var(--text-muted);
+      font-weight: 600;
+      font-size: 11.5px;
+    }
+
+    .footer-credits span {
+      color: var(--text-primary);
+      font-weight: 700;
+    }
+
+    /* ================= RESPONSIVIDADE ================= */
+    @media (max-width: 768px) {
+      .top-header {
+        padding: 12px 16px;
+      }
+
+      .header-container {
+        flex-wrap: wrap;
+        justify-content: space-between;
+      }
+
+      .brand-left,
+      .brand-right {
+        min-width: auto;
+      }
+
+      .logo-right-img {
+        height: 58px;
+      }
+
+      .header-title-box {
+        order: 3;
+        flex-basis: 100%;
+        padding-top: 8px;
+        border-top: 1px solid #E2E8F0;
+      }
+
+      .header-title-img {
+        max-height: 64px;
+      }
+
+      .navbar {
+        padding: 0 12px;
+      }
+
+      .nav-container {
+        flex-wrap: wrap;
+        justify-content: center;
+        padding-bottom: 6px;
+      }
+
+      .nav-links {
+        width: 100%;
+        justify-content: space-around;
+        gap: 4px;
+      }
+
+      .nav-item {
+        padding: 9px 10px;
+        font-size: 11.5px;
+      }
+
+      .dropdown-menu {
+        min-width: 200px;
+      }
+
+      .main-wrapper {
+        padding: 16px;
+      }
+
+      .main-white-canvas {
+        padding: 18px 14px;
+      }
+
+      .embed-frame-wrapper,
+      .embed-frame {
+        min-height: 560px;
+      }
+
+      .regional-card {
+        flex-direction: column;
+        text-align: center;
+        padding: 18px 16px;
+      }
+
+      .unit-top-row {
+        justify-content: center;
+      }
+
+      .contact-item {
+        justify-content: center;
+      }
+
+      .org-connector {
+        display: none;
+      }
+
+      .search-box {
+        width: 100%;
+        flex-basis: 100%;
+      }
+
+      .footer-container {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .footer-credits {
+        text-align: left;
+        padding-top: 6px;
+        border-top: 1px dashed #CBD5E1;
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- CABEÇALHO SUPERIOR -->
+  <header class="top-header">
+    <div class="header-container">
+      <!-- Logo Esquerda -->
+      <div class="brand-left">
+        <img src="imagens/logo_mini.png" alt="Logo CBMGO" class="logo-left-img" />
+        <div class="brand-subtext">
+          <span>CBMGO</span>
+          <span>3º CRBM</span>
+        </div>
+      </div>
+
+      <!-- Título Principal em Imagem -->
+      <div class="header-title-box">
+        <h1 class="sr-only">3º COMANDO REGIONAL - CBMGO</h1>
+        <img src="imagens/logotexto.png" alt="3º Comando Regional CBMGO" class="header-title-img" />
+      </div>
+
+      <!-- Logo Direita -->
+      <div class="brand-right">
+        <img src="imagens/logocrbm.png" alt="Brasão 3º CRBM" class="logo-right-img" />
+      </div>
+    </div>
+  </header>
+
+  <!-- BARRA DE NAVEGAÇÃO -->
+  <nav class="navbar" aria-label="Menu Principal">
+    <div class="nav-container">
+      <div class="nav-links">
+        <!-- HOME -->
+        <button type="button" class="nav-item active" data-route="home">HOME</button>
+
+        <!-- GESTÃO (Menu Suspenso) -->
+        <div class="nav-dropdown" data-parent="gestao">
+          <button type="button" class="nav-item nav-dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+            <span>GESTÃO</span>
+            <svg class="dropdown-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+          <div class="dropdown-menu" role="menu">
+            <button type="button" class="dropdown-item" data-route="viaturas-ativas" data-parent-route="gestao" role="menuitem">VIATURAS ATIVAS</button>
+            <button type="button" class="dropdown-item" data-route="inspecao-tecnica" data-parent-route="gestao" role="menuitem">INSPEÇÃO TÉCNICA</button>
+            <button type="button" class="dropdown-item" data-route="controle-financeiro" data-parent-route="gestao" role="menuitem">CONTROLE FINANCEIRO</button>
+          </div>
+        </div>
+
+        <!-- ESTATÍSTICAS (Menu Suspenso) -->
+        <div class="nav-dropdown" data-parent="estatisticas">
+          <button type="button" class="nav-item nav-dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+            <span>ESTATÍSTICAS</span>
+            <svg class="dropdown-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+          <div class="dropdown-menu" role="menu">
+            <button type="button" class="dropdown-item" data-route="estatisticas-operacional" data-parent-route="estatisticas" role="menuitem">OPERACIONAL</button>
+            <button type="button" class="dropdown-item" data-route="estatisticas-secip" data-parent-route="estatisticas" role="menuitem">SECIP</button>
+          </div>
+        </div>
+
+        <!-- SERVIÇO (Menu Suspenso) -->
+        <div class="nav-dropdown" data-parent="servico">
+          <button type="button" class="nav-item nav-dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+            <span>SERVIÇO</span>
+            <svg class="dropdown-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+          <div class="dropdown-menu" role="menu">
+            <button type="button" class="dropdown-item" data-route="recursos-humanos" data-parent-route="servico" role="menuitem">RECURSOS HUMANOS</button>
+            <button type="button" class="dropdown-item" data-route="area-atuacao" data-parent-route="servico" role="menuitem">ÁREA DE ATUAÇÃO</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Indicador de Sincronização (Conectado à planilha basedados) -->
+      <button type="button" class="sync-pill" id="btn-sync" title="Clique para atualizar os dados da planilha">
+        <span class="sync-dot" id="sync-dot"></span>
+        <span id="sync-label">Aguardando Planilha</span>
+        <svg class="sync-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
+          <path d="M3 3v5h5" />
+          <path d="M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16" />
+          <path d="M16 16h5v5" />
+        </svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- VIEW PRINCIPAL -->
+  <main class="main-wrapper">
+    <section id="app-view" class="main-white-canvas" aria-live="polite">
+      <!-- Renderizado dinamicamente via JS -->
+    </section>
+  </main>
+
+  <!-- RODAPÉ -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-info">
+        <div><strong>3º Comando Regional Bombeiro Militar – Anápolis</strong></div>
+        <div>Distrito Agroindustrial, Rua VP-7-D, quadra 13, módulos 3 e 4 – Anápolis-GO – CEP 75132-140</div>
+        <div>
+          e-mail: <a href="mailto:3crbm.cbmgo@goias.gov.br">3crbm.cbmgo@goias.gov.br</a> - Telefone: (62) 3328-2439
+        </div>
+      </div>
+
+      <div class="footer-credits">
+        Desenvolvido por: <span>2º SGT Renato</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // =========================================================================
+    // 1. CONFIGURAÇÃO DAS FONTES DE DADOS (GOOGLE SHEETS & LOOKER STUDIO)
+    // =========================================================================
+    const FONTES_PLANILHAS = {
+      basedados: {
+        id: '1SYRxMFjxYkVou3kQJY-hPQRryuEyN3WC3OaFtVFPeA0',
+        abas: {
+          viaturas: 'VIATURAS'
+        }
+      },
+      controleEfetivo: {
+        id: '1cr7WY6_HYM8ISty_iDHyKYlRo8LDG-CNSHbb8D43yYc',
+        range: 'A1:F30',
+        areaAtuacaoRange: 'A33:F47',
+        abas: {
+          '3º BBM': '3º BBM - Anápolis',
+          '17º BBM': '17º BBM Pirenópolis',
+          '22º BBM': '22º BBM - Jaraguá',
+          '18ª CIBM': '18ª CIBM - Silvânia'
+        }
+      }
+    };
+
+    const RELATORIOS_EMBED = {
+      inspecaoTecnica: {
+        originalUrl: 'https://datastudio.google.com/reporting/a8e38cb0-2752-4243-9522-e9fd66ba41a0/page/0NuZD',
+        embedUrl: 'https://datastudio.google.com/embed/reporting/a8e38cb0-2752-4243-9522-e9fd66ba41a0/page/0NuZD'
+      },
+      estatisticasOperacional: {
+        originalUrl: 'https://app.powerbi.com/view?r=eyJrIjoiMGMwMWQ3MzktZTBlMS00ODA2LTgwOTktNmE2NGFhYzY5ODJhIiwidCI6ImU2NzUxMDFmLWVkNDItNDNmMy1hZjBjLWNhMTRlMjQxZDgwNiJ9',
+        embedUrl: 'https://app.powerbi.com/view?r=eyJrIjoiMGMwMWQ3MzktZTBlMS00ODA2LTgwOTktNmE2NGFhYzY5ODJhIiwidCI6ImU2NzUxMDFmLWVkNDItNDNmMy1hZjBjLWNhMTRlMjQxZDgwNiJ9'
+      },
+      estatisticasSecip: {
+        originalUrl: 'https://app.powerbi.com/view?r=eyJrIjoiZDg0YmViZGItY2YzNS00YWFlLWI1MTMtMmNlYjI4NGNlZGUzIiwidCI6ImU2NzUxMDFmLWVkNDItNDNmMy1hZjBjLWNhMTRlMjQxZDgwNiJ9',
+        embedUrl: 'https://app.powerbi.com/view?r=eyJrIjoiZDg0YmViZGItY2YzNS00YWFlLWI1MTMtMmNlYjI4NGNlZGUzIiwidCI6ImU2NzUxMDFmLWVkNDItNDNmMy1hZjBjLWNhMTRlMjQxZDgwNiJ9'
+      }
+    };
+
+    const CACHE_DADOS = {
+      viaturas: null,
+      efetivo: {},
+      areaAtuacao: {}
+    };
+
+    const VIATURAS_STATE = {
+      abasUnidades: ['3º BBM', '17º BBM', '22º BBM', '18ª CIBM', '4ª CIBM'],
+      abaAtiva: '3º BBM',
+      termoBusca: ''
+    };
+
+    const RH_STATE = {
+      abasConfig: [
+        { aba: '3º BBM', guiaPlanilha: '3º BBM - Anápolis' },
+        { aba: '17º BBM', guiaPlanilha: '17º BBM Pirenópolis' },
+        { aba: '22º BBM', guiaPlanilha: '22º BBM - Jaraguá' },
+        { aba: '18ª CIBM', guiaPlanilha: '18ª CIBM - Silvânia' }
+      ],
+      abaAtiva: '3º BBM',
+      termoBusca: ''
+    };
+
+    const AREA_ATUACAO_STATE = {
+      abasConfig: [
+        { aba: '3º BBM', guiaPlanilha: '3º BBM - Anápolis' },
+        { aba: '17º BBM', guiaPlanilha: '17º BBM Pirenópolis' },
+        { aba: '22º BBM', guiaPlanilha: '22º BBM - Jaraguá' },
+        { aba: '18ª CIBM', guiaPlanilha: '18ª CIBM - Silvânia' }
+      ],
+      abaAtiva: '3º BBM',
+      termoBusca: ''
+    };
+
+    // =========================================================================
+    // 2. DADOS ESTÁTICOS DA HOME (ORGANOGRAMA)
+    // =========================================================================
+    const DADOS_ORGANOGRAMA = {
+      comandoRegional: {
+        sigla: '3º CRBM',
+        nome: '3º Comando Regional Bombeiro Militar – Anápolis',
+        cargo: 'Comandante Regional',
+        comandante: 'Coronel BM ALTIERI Araújo de Oliveira',
+        foto: 'imagens/cel_altieri.png',
+        email: '3crbm.cbmgo@goias.gov.br',
+        telefone: '(62) 3328-2439',
+        sei: '11142'
+      },
+      unidadesSubordinadas: [
+        {
+          sigla: '3º BBM',
+          municipio: 'Anápolis',
+          nome: '3º Batalhão Bombeiro Militar – 3º BBM – Anápolis',
+          cargo: 'Comandante',
+          comandante: 'Major BM Hugo Oliveira BAZÍLIO',
+          foto: 'imagens/maj_bazilio.png',
+          email: 'anapolis.cbmgo@goias.gov.br',
+          telefone: '(62) 3328-2430',
+          sei: '09865'
+        },
+        {
+          sigla: '17º BBM',
+          municipio: 'Pirenópolis',
+          nome: '17º Batalhão Bombeiro Militar – 17º BBM – Pirenópolis',
+          cargo: 'Comandante',
+          comandante: 'Tenente-Coronel BM ANA LÚCIA Cardoso',
+          foto: 'imagens/tc_analucia.png',
+          email: 'pirenopolis.cbmgo@goias.gov.br',
+          telefone: '(62) 3331-2178 e 1205',
+          sei: '09878'
+        },
+        {
+          sigla: '22º BBM',
+          municipio: 'Jaraguá',
+          nome: '22º Batalhão Bombeiro Militar – 22º BBM – Jaraguá',
+          cargo: 'Comandante',
+          comandante: 'Tenente-Coronel BM Ricardo Farias BAILONA',
+          foto: 'imagens/tc_bailona.png',
+          email: 'jaragua.cbmgo@goias.gov.br',
+          telefone: '(62) 3326-6050 e 6229',
+          sei: '09891'
+        },
+        {
+          sigla: '18ª CIBM',
+          municipio: 'Ceres',
+          nome: '18ª Companhia Independente Bombeiro Militar – 18ª CIBM – Ceres',
+          cargo: 'Comandante',
+          comandante: 'Major BM Diego de ALMEIDA Ferreira',
+          foto: 'imagens/maj_almeida.png',
+          email: 'ceres.cbmgo@goias.gov.br',
+          telefone: '(62) 3323-1283',
+          sei: '14212'
+        },
+        {
+          sigla: '4ª CIBM',
+          municipio: 'Silvânia',
+          nome: '4ª Companhia Independente Bombeiro Militar – 4ª CIBM – Silvânia',
+          cargo: 'Comandante',
+          comandante: 'Capitão BM MILSON Fernandes da Silva Junior',
+          foto: 'imagens/cap_milson.png',
+          email: 'silvania.cbmgo@goias.gov.br',
+          telefone: '(62) 3332-1814',
+          sei: '16443'
+        }
+      ]
+    };
+
+    const FALLBACK_AVATAR = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 140' fill='%23CBD5E1'%3E%3Crect width='120' height='140' fill='%23E2E8F0'/%3E%3Ccircle cx='60' cy='48' r='24' fill='%2394A3B8'/%3E%3Cpath d='M20 128c0-22 18-38 40-38s40 16 40 38' fill='%2394A3B8'/%3E%3C/svg%3E";
+
+    const ICON_MAIL = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>`;
+    const ICON_PHONE = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>`;
+
+    // =========================================================================
+    // 3. LEITURA DO GOOGLE SHEETS (CSV + JSONP)
+    // =========================================================================
+    function atualizarStatusSync(estado, texto) {
+      const dot = document.getElementById('sync-dot');
+      const label = document.getElementById('sync-label');
+      if (!dot || !label) return;
+      dot.className = 'sync-dot';
+      if (estado === 'loading') dot.classList.add('loading');
+      if (estado === 'error') dot.classList.add('error');
+      label.textContent = texto;
+    }
+
+    function escapeHTML(str) {
+      if (str === null || str === undefined) return '';
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+    }
+
+    function normalizarTexto(valor) {
+      return String(valor || '')
+        .trim()
+        .toUpperCase()
+        .replace(/[°º]/g, 'º')
+        .replace(/[ª]/g, 'ª')
+        .replace(/\s+/g, ' ');
+    }
+
+    function parseCSVText(csvText) {
+      const rows = [];
+      let currentRow = [];
+      let currentField = '';
+      let inQuotes = false;
+
+      for (let i = 0; i < csvText.length; i++) {
+        const ch = csvText[i];
+        const nextCh = csvText[i + 1];
+
+        if (ch === '"') {
+          if (inQuotes && nextCh === '"') {
+            currentField += '"';
+            i++;
+          } else {
+            inQuotes = !inQuotes;
+          }
+        } else if (ch === ',' && !inQuotes) {
+          currentRow.push(currentField.trim());
+          currentField = '';
+        } else if ((ch === '\r' || ch === '\n') && !inQuotes) {
+          if (ch === '\r' && nextCh === '\n') {
+            i++;
+          }
+          currentRow.push(currentField.trim());
+          if (currentRow.some((cell) => cell !== '')) {
+            rows.push(currentRow);
+          }
+          currentRow = [];
+          currentField = '';
+        } else {
+          currentField += ch;
+        }
+      }
+
+      if (currentField.length > 0 || currentRow.length > 0) {
+        currentRow.push(currentField.trim());
+        if (currentRow.some((cell) => cell !== '')) {
+          rows.push(currentRow);
+        }
+      }
+
+      if (rows.length === 0) {
+        throw new Error('A aba da planilha retornou sem linhas de dados.');
+      }
+
+      const headers = rows[0].slice(0, 6).map((h, idx) => h || `Coluna ${String.fromCharCode(65 + idx)}`);
+      const dataRows = rows
+        .slice(1)
+        .map((r) => [0, 1, 2, 3, 4, 5].map((i) => r[i] || ''))
+        .filter((row) => row.some((val) => val !== ''));
+
+      return { headers, rows: dataRows, rawRows: rows };
+    }
+
+    function processarGvizTable(json) {
+      if (!json || !json.table || json.status === 'error') {
+        throw new Error(json?.errors?.[0]?.detailed_message || 'Resposta inválida da planilha.');
+      }
+
+      const cols = (json.table.cols || []).slice(0, 6).map((c, idx) =>
+        (c && c.label ? c.label.trim() : '') || `Coluna ${String.fromCharCode(65 + idx)}`
+      );
+
+      const rows = (json.table.rows || [])
+        .map((r) => {
+          const cells = r.c || [];
+          return [0, 1, 2, 3, 4, 5].map((i) => {
+            const cell = cells[i];
+            if (!cell) return '';
+            return cell.f !== undefined && cell.f !== null
+              ? String(cell.f).trim()
+              : cell.v !== null && cell.v !== undefined
+              ? String(cell.v).trim()
+              : '';
+          });
+        })
+        .filter((row) => row.some((val) => val !== ''));
+
+      const rawRows = [cols, ...rows];
+      return { headers: cols, rows, rawRows };
+    }
+
+    function carregarViaJSONP(spreadsheetId, sheetName, range = 'A:F') {
+      return new Promise((resolve, reject) => {
+        const script = document.createElement('script');
+        let finalizado = false;
+
+        window.google = window.google || {};
+        window.google.visualization = window.google.visualization || {};
+        window.google.visualization.Query = window.google.visualization.Query || {};
+
+        const previousHandler = window.google.visualization.Query.setResponse;
+
+        const limpar = () => {
+          if (script.parentNode) script.parentNode.removeChild(script);
+          window.google.visualization.Query.setResponse = previousHandler;
+        };
+
+        const timer = setTimeout(() => {
+          if (!finalizado) {
+            finalizado = true;
+            limpar();
+            reject(new Error('Tempo esgotado ao carregar os dados da planilha via JSONP.'));
+          }
+        }, 12000);
+
+        window.google.visualization.Query.setResponse = function (json) {
+          if (finalizado) return;
+          finalizado = true;
+          clearTimeout(timer);
+          limpar();
+          try {
+            resolve(processarGvizTable(json));
+          } catch (e) {
+            reject(e);
+          }
+        };
+
+        script.src = `https://docs.google.com/spreadsheets/d/${spreadsheetId}/gviz/tq?tqx=out:json&sheet=${encodeURIComponent(sheetName)}&range=${encodeURIComponent(range)}&headers=1&_=${Date.now()}`;
+        script.onerror = () => {
+          if (finalizado) return;
+          finalizado = true;
+          clearTimeout(timer);
+          limpar();
+          reject(new Error('Falha ao carregar script do Google Sheets.'));
+        };
+
+        document.head.appendChild(script);
+      });
+    }
+
+    async function carregarViaCSVFetch(spreadsheetId, sheetName, range = 'A:F') {
+      const urls = [
+        `https://docs.google.com/spreadsheets/d/${spreadsheetId}/gviz/tq?tqx=out:csv&sheet=${encodeURIComponent(sheetName)}&range=${encodeURIComponent(range)}`,
+        `https://docs.google.com/spreadsheets/d/${spreadsheetId}/export?format=csv&sheet=${encodeURIComponent(sheetName)}`
+      ];
+
+      let ultimoErro = null;
+      for (const url of urls) {
+        try {
+          const resp = await fetch(url, { cache: 'no-store' });
+          if (!resp.ok) {
+            ultimoErro = new Error(`HTTP ${resp.status}`);
+            continue;
+          }
+          const text = await resp.text();
+          if (!text || text.includes('<!DOCTYPE html>') || text.includes('<html')) {
+            ultimoErro = new Error('Resposta HTML em vez de CSV.');
+            continue;
+          }
+          return parseCSVText(text);
+        } catch (err) {
+          ultimoErro = err;
+        }
+      }
+      throw ultimoErro || new Error('Não foi possível obter o CSV da planilha.');
+    }
+
+    async function carregarAbaGoogleSheets(spreadsheetId, sheetName, range = 'A:F') {
+      const isFileProtocol = window.location.protocol === 'file:';
+
+      if (isFileProtocol) {
+        try {
+          return await carregarViaJSONP(spreadsheetId, sheetName, range);
+        } catch (jsonpErr) {
+          return await carregarViaCSVFetch(spreadsheetId, sheetName, range);
+        }
+      }
+
+      try {
+        return await carregarViaCSVFetch(spreadsheetId, sheetName, range);
+      } catch (csvErr) {
+        return await carregarViaJSONP(spreadsheetId, sheetName, range);
+      }
+    }
+
+    // =========================================================================
+    // 4. RENDERIZAÇÃO DA VIEW: HOME
+    // =========================================================================
+    function renderHomeView() {
+      const cr = DADOS_ORGANOGRAMA.comandoRegional;
+      const subordinadasHTML = DADOS_ORGANOGRAMA.unidadesSubordinadas.map((u) => `
+        <article class="unit-card">
+          <div class="unit-card-header">
+            <span class="unit-sigla-pill">${u.sigla} • ${u.municipio}</span>
+            <span class="sei-badge" title="Código da Unidade no SEI">SEI: ${u.sei}</span>
+          </div>
+
+          <div class="unit-photo-frame">
+            <img src="${u.foto}" alt="${u.comandante}" onerror="this.onerror=null;this.src='${FALLBACK_AVATAR}';" />
+          </div>
+
+          <h3 class="unit-title">${u.nome}</h3>
+
+          <div class="unit-commander-box">
+            <div class="unit-commander-label">${u.cargo}</div>
+            <div class="unit-commander-name">${u.comandante}</div>
+          </div>
+
+          <div class="unit-contacts">
+            <div class="contact-item">
+              ${ICON_MAIL}
+              <a href="mailto:${u.email}">${u.email}</a>
+            </div>
+            <div class="contact-item">
+              ${ICON_PHONE}
+              <span>${u.telefone}</span>
+            </div>
+          </div>
+        </article>
+      `).join('');
+
+      return `
+        <div class="section-header">
+          <h2 class="section-title">Estrutura Organizacional e Comandos — 3º CRBM</h2>
+          <p class="section-subtitle">Unidades Operacionais subordinadas, Comandantes, contatos institucionais e códigos SEI</p>
+        </div>
+
+        <div class="regional-wrapper">
+          <article class="regional-card">
+            <div class="regional-photo-frame">
+              <img src="${cr.foto}" alt="${cr.comandante}" onerror="this.onerror=null;this.src='${FALLBACK_AVATAR}';" />
+            </div>
+
+            <div class="regional-details">
+              <div class="unit-top-row">
+                <span class="unit-tag">${cr.sigla} • Sede Regional</span>
+                <span class="sei-badge" title="Código da Unidade no SEI">Unidade SEI: ${cr.sei}</span>
+              </div>
+
+              <h3 class="regional-unit-name">${cr.nome}</h3>
+
+              <div>
+                <div class="commander-role">${cr.cargo}</div>
+                <div class="commander-name">${cr.comandante}</div>
+              </div>
+
+              <div class="contact-list">
+                <div class="contact-item">
+                  ${ICON_MAIL}
+                  <a href="mailto:${cr.email}">${cr.email}</a>
+                </div>
+                <div class="contact-item">
+                  ${ICON_PHONE}
+                  <span>${cr.telefone}</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <div class="org-connector" aria-hidden="true"></div>
+        </div>
+
+        <div class="units-grid">
+          ${subordinadasHTML}
+        </div>
+      `;
+    }
+
+    // =========================================================================
+    // 5. RENDERIZAÇÃO DA VIEW: GESTÃO > VIATURAS ATIVAS
+    // =========================================================================
+    async function renderViaturasAtivasView(forcarRecarga = false) {
+      const appView = document.getElementById('app-view');
+
+      if (!CACHE_DADOS.viaturas || forcarRecarga) {
+        atualizarStatusSync('loading', 'Sincronizando...');
+        appView.innerHTML = `
+          <div class="state-box">
+            <div class="spinner"></div>
+            <div>Carregando frota de viaturas da planilha <strong>basedados</strong>...</div>
+          </div>
+        `;
+
+        try {
+          const dados = await carregarAbaGoogleSheets(
+            FONTES_PLANILHAS.basedados.id,
+            FONTES_PLANILHAS.basedados.abas.viaturas,
+            'A:F'
+          );
+          CACHE_DADOS.viaturas = dados;
+          atualizarStatusSync('ok', 'Planilha Sincronizada');
+        } catch (err) {
+          atualizarStatusSync('error', 'Erro na Planilha');
+          appView.innerHTML = `
+            <div class="state-box error">
+              <strong>Não foi possível carregar os dados da aba VIATURAS.</strong><br/><br/>
+              ${escapeHTML(err.message)}<br/><br/>
+              <small>Verifique sua conexão com a internet e se a planilha <em>basedados</em> está compartilhada como "Qualquer pessoa com o link pode visualizar" e a aba se chama exatamente <strong>VIATURAS</strong>.</small>
+            </div>
+          `;
+          return;
+        }
+      }
+
+      desenharInterfaceViaturas();
+    }
+
+    function desenharInterfaceViaturas() {
+      const appView = document.getElementById('app-view');
+      const { headers, rows } = CACHE_DADOS.viaturas;
+
+      const contadores = {};
+      VIATURAS_STATE.abasUnidades.forEach((unidade) => {
+        const alvo = normalizarTexto(unidade);
+        contadores[unidade] = rows.filter((r) => normalizarTexto(r[2]) === alvo).length;
+      });
+
+      const alvoAba = normalizarTexto(VIATURAS_STATE.abaAtiva);
+      const linhasDaUnidade = rows.filter((r) => normalizarTexto(r[2]) === alvoAba);
+
+      const totalAtivas = linhasDaUnidade.filter((r) => normalizarTexto(r[5]) === 'ATIVA').length;
+      const totalBaixadas = linhasDaUnidade.filter((r) => normalizarTexto(r[5]) === 'BAIXADA').length;
+
+      const termo = VIATURAS_STATE.termoBusca.trim().toLowerCase();
+      const linhasFiltradas = termo
+        ? linhasDaUnidade.filter((r) => r.some((cel) => String(cel).toLowerCase().includes(termo)))
+        : linhasDaUnidade;
+
+      const abasHTML = VIATURAS_STATE.abasUnidades.map((unidade) => {
+        const isActive = unidade === VIATURAS_STATE.abaAtiva;
+        return `
+          <button type="button" class="subtab-btn ${isActive ? 'active' : ''}" data-unit-tab="${unidade}">
+            <span>${unidade}</span>
+            <span class="subtab-count">${contadores[unidade]}</span>
+          </button>
+        `;
+      }).join('');
+
+      const thHTML = headers.slice(0, 6).map((h) => `<th>${escapeHTML(h)}</th>`).join('');
+
+      let tbodyHTML = '';
+      if (linhasFiltradas.length === 0) {
+        tbodyHTML = `
+          <tr>
+            <td colspan="6" class="state-box">
+              Nenhuma viatura encontrada para <strong>${escapeHTML(VIATURAS_STATE.abaAtiva)}</strong>${termo ? ` com o filtro "${escapeHTML(VIATURAS_STATE.termoBusca)}"` : ''}.
+            </td>
+          </tr>
+        `;
+      } else {
+        tbodyHTML = linhasFiltradas.map((row) => {
+          const colsHTML = [0, 1, 2, 3, 4, 5].map((colIdx) => {
+            const valor = row[colIdx] || '-';
+            if (colIdx === 5) {
+              const statusNorm = normalizarTexto(valor);
+              if (statusNorm === 'ATIVA') {
+                return `<td><span class="status-ativa">${escapeHTML(valor)}</span></td>`;
+              } else if (statusNorm === 'BAIXADA') {
+                return `<td><span class="status-baixada">${escapeHTML(valor)}</span></td>`;
+              }
+              return `<td><span class="status-outro">${escapeHTML(valor)}</span></td>`;
+            }
+            if (colIdx === 0) {
+              return `<td><strong>${escapeHTML(valor)}</strong></td>`;
+            }
+            return `<td>${escapeHTML(valor)}</td>`;
+          }).join('');
+
+          return `<tr>${colsHTML}</tr>`;
+        }).join('');
+      }
+
+      appView.innerHTML = `
+        <div class="view-toolbar">
+          <div class="view-title-block">
+            <h2>Gestão de Frota — Viaturas (${escapeHTML(VIATURAS_STATE.abaAtiva)})</h2>
+            <p>Dados sincronizados da tabela <strong>VIATURAS</strong> (Colunas A a F • Filtro por Unidade na Coluna C)</p>
+          </div>
+
+          <div class="summary-badges">
+            <span class="stat-chip">Total na Unidade: <strong>${linhasDaUnidade.length}</strong></span>
+            <span class="stat-chip ativa">Ativas: <strong>${totalAtivas}</strong></span>
+            <span class="stat-chip baixada">Baixadas: <strong>${totalBaixadas}</strong></span>
+          </div>
+        </div>
+
+        <div class="subtabs-bar">
+          <div class="subtabs-list" role="tablist" aria-label="Unidades do 3º CRBM">
+            ${abasHTML}
+          </div>
+
+          <div class="search-box">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <input type="text" id="input-busca-viatura" placeholder="Filtrar na aba ${escapeHTML(VIATURAS_STATE.abaAtiva)}..." value="${escapeHTML(VIATURAS_STATE.termoBusca)}" />
+          </div>
+        </div>
+
+        <div class="listview-container">
+          <table class="listview-table">
+            <thead>
+              <tr>${thHTML}</tr>
+            </thead>
+            <tbody>
+              ${tbodyHTML}
+            </tbody>
+          </table>
+        </div>
+      `;
+
+      appView.querySelectorAll('.subtab-btn').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          VIATURAS_STATE.abaAtiva = btn.getAttribute('data-unit-tab');
+          desenharInterfaceViaturas();
+        });
+      });
+
+      const inputBusca = document.getElementById('input-busca-viatura');
+      if (inputBusca) {
+        inputBusca.addEventListener('input', (e) => {
+          const cursorPos = e.target.selectionStart;
+          VIATURAS_STATE.termoBusca = e.target.value;
+          desenharInterfaceViaturas();
+          const novoInput = document.getElementById('input-busca-viatura');
+          if (novoInput) {
+            novoInput.focus();
+            novoInput.setSelectionRange(cursorPos, cursorPos);
+          }
+        });
+      }
+    }
+
+    // =========================================================================
+    // 5B. RENDERIZAÇÃO DE VIEWS COM PAINEL INCORPORADO (IFRAME)
+    // =========================================================================
+    function renderPainelIncorporadoView({ titulo, subtitulo, tituloIframe, iframeId, embedUrl, originalUrl }) {
+      const appView = document.getElementById('app-view');
+
+      appView.innerHTML = `
+        <div class="view-toolbar">
+          <div class="view-title-block">
+            <h2>${escapeHTML(titulo)}</h2>
+            <p>${escapeHTML(subtitulo)}</p>
+          </div>
+
+          <div class="embed-actions-row">
+            <button type="button" class="btn-secondary-action" id="btn-reload-embed" title="Recarregar painel incorporado">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
+                <path d="M3 3v5h5" />
+                <path d="M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16" />
+                <path d="M16 16h5v5" />
+              </svg>
+              <span>Recarregar Painel</span>
+            </button>
+
+            <a href="${escapeHTML(originalUrl)}" target="_blank" rel="noopener noreferrer" class="btn-secondary-action" title="Abrir link original em nova aba">
+              <span>Abrir em Nova Aba</span>
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                <polyline points="15 3 21 3 21 9" />
+                <line x1="10" y1="14" x2="21" y2="3" />
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="embed-frame-wrapper">
+          <iframe
+            id="${escapeHTML(iframeId)}"
+            class="embed-frame"
+            src="${escapeHTML(embedUrl)}"
+            title="${escapeHTML(tituloIframe)}"
+            allowfullscreen
+            sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"
+          ></iframe>
+        </div>
+      `;
+
+      const btnReload = document.getElementById('btn-reload-embed');
+      const iframe = document.getElementById(iframeId);
+      if (btnReload && iframe) {
+        btnReload.addEventListener('click', () => {
+          iframe.src = embedUrl;
+        });
+      }
+    }
+
+    function renderInspecaoTecnicaView() {
+      renderPainelIncorporadoView({
+        titulo: 'Gestão — Inspeção Técnica',
+        subtitulo: 'Painel incorporado diretamente na view a partir do relatório Google Data Studio / Looker Studio',
+        tituloIframe: 'Relatório de Inspeção Técnica - 3º CRBM',
+        iframeId: 'iframe-inspecao-tecnica',
+        embedUrl: RELATORIOS_EMBED.inspecaoTecnica.embedUrl,
+        originalUrl: RELATORIOS_EMBED.inspecaoTecnica.originalUrl
+      });
+    }
+
+    function renderEstatisticasOperacionalView() {
+      renderPainelIncorporadoView({
+        titulo: 'Estatísticas — Operacional',
+        subtitulo: 'Painel incorporado diretamente na view a partir do relatório Power BI',
+        tituloIframe: 'Estatísticas Operacionais - 3º CRBM',
+        iframeId: 'iframe-estatisticas-operacional',
+        embedUrl: RELATORIOS_EMBED.estatisticasOperacional.embedUrl,
+        originalUrl: RELATORIOS_EMBED.estatisticasOperacional.originalUrl
+      });
+    }
+
+    function renderEstatisticasSecipView() {
+      renderPainelIncorporadoView({
+        titulo: 'Estatísticas — SECIP',
+        subtitulo: 'Painel incorporado diretamente na view a partir do relatório Power BI',
+        tituloIframe: 'Estatísticas SECIP - 3º CRBM',
+        iframeId: 'iframe-estatisticas-secip',
+        embedUrl: RELATORIOS_EMBED.estatisticasSecip.embedUrl,
+        originalUrl: RELATORIOS_EMBED.estatisticasSecip.originalUrl
+      });
+    }
+
+    // =========================================================================
+    // 5C. RENDERIZAÇÃO DA VIEW: SERVIÇO > RECURSOS HUMANOS (A1:F30)
+    // =========================================================================
+    async function renderRecursosHumanosView(forcarRecarga = false) {
+      const appView = document.getElementById('app-view');
+      const cfgAtual = RH_STATE.abasConfig.find((item) => item.aba === RH_STATE.abaAtiva) || RH_STATE.abasConfig[0];
+      const cacheKey = cfgAtual.guiaPlanilha;
+
+      if (!CACHE_DADOS.efetivo[cacheKey] || forcarRecarga) {
+        atualizarStatusSync('loading', 'Sincronizando RH...');
+        appView.innerHTML = `
+          <div class="state-box">
+            <div class="spinner"></div>
+            <div>Carregando dados da guia <strong>${escapeHTML(cfgAtual.guiaPlanilha)}</strong> (intervalo <strong>A1:F30</strong>)...</div>
+          </div>
+        `;
+
+        try {
+          const dados = await carregarAbaGoogleSheets(
+            FONTES_PLANILHAS.controleEfetivo.id,
+            cfgAtual.guiaPlanilha,
+            FONTES_PLANILHAS.controleEfetivo.range
+          );
+          // Limita estritamente a ate 30 linhas no total (A1:F30)
+          const rawLimitado = (dados.rawRows || [dados.headers, ...dados.rows]).slice(0, 30);
+          const cabecalho = rawLimitado[0] || ['A', 'B', 'C', 'D', 'E', 'F'];
+          const corpo = rawLimitado.slice(1).map((r) => [0, 1, 2, 3, 4, 5].map((i) => r[i] || ''));
+
+          CACHE_DADOS.efetivo[cacheKey] = {
+            headers: cabecalho,
+            rows: corpo
+          };
+          atualizarStatusSync('ok', 'Planilha Sincronizada');
+        } catch (err) {
+          atualizarStatusSync('error', 'Erro na Planilha RH');
+          appView.innerHTML = `
+            <div class="state-box error">
+              <strong>Não foi possível carregar os dados da guia "${escapeHTML(cfgAtual.guiaPlanilha)}".</strong><br/><br/>
+              ${escapeHTML(err.message)}<br/><br/>
+              <small>Verifique se a planilha <em>Controle de efetivo 3°CRBM</em> está compartilhada como "Qualquer pessoa com o link pode visualizar" e se a aba se chama exatamente <strong>${escapeHTML(cfgAtual.guiaPlanilha)}</strong>.</small>
+            </div>
+          `;
+          return;
+        }
+      }
+
+      desenharInterfaceRecursosHumanos(cfgAtual);
+    }
+
+    function desenharInterfaceRecursosHumanos(cfgAtual) {
+      const appView = document.getElementById('app-view');
+      const { headers, rows } = CACHE_DADOS.efetivo[cfgAtual.guiaPlanilha] || { headers: [], rows: [] };
+
+      const termo = RH_STATE.termoBusca.trim().toLowerCase();
+      const linhasFiltradas = termo
+        ? rows.filter((r) => r.some((cel) => String(cel).toLowerCase().includes(termo)))
+        : rows;
+
+      const abasHTML = RH_STATE.abasConfig.map((item) => {
+        const isActive = item.aba === RH_STATE.abaAtiva;
+        return `
+          <button type="button" class="subtab-btn ${isActive ? 'active' : ''}" data-rh-tab="${escapeHTML(item.aba)}" title="Tabela: ${escapeHTML(item.guiaPlanilha)}">
+            <span>${escapeHTML(item.aba)}</span>
+          </button>
+        `;
+      }).join('');
+
+      const thHTML = [0, 1, 2, 3, 4, 5].map((idx) => {
+        const labelCol = headers[idx] || `Coluna ${String.fromCharCode(65 + idx)}`;
+        return `<th>${escapeHTML(labelCol)}</th>`;
+      }).join('');
+
+      let tbodyHTML = '';
+      if (linhasFiltradas.length === 0) {
+        tbodyHTML = `
+          <tr>
+            <td colspan="6" class="state-box">
+              Nenhum registro encontrado em <strong>${escapeHTML(cfgAtual.guiaPlanilha)}</strong> (A1:F30)${termo ? ` com o filtro "${escapeHTML(RH_STATE.termoBusca)}"` : ''}.
+            </td>
+          </tr>
+        `;
+      } else {
+        tbodyHTML = linhasFiltradas.map((row) => {
+          const colsHTML = [0, 1, 2, 3, 4, 5].map((colIdx) => {
+            const valor = row[colIdx] || '-';
+            if (colIdx === 0) {
+              return `<td><strong>${escapeHTML(valor)}</strong></td>`;
+            }
+            return `<td>${escapeHTML(valor)}</td>`;
+          }).join('');
+
+          return `<tr>${colsHTML}</tr>`;
+        }).join('');
+      }
+
+      appView.innerHTML = `
+        <div class="view-toolbar">
+          <div class="view-title-block">
+            <h2>Serviço — Recursos Humanos (${escapeHTML(cfgAtual.aba)})</h2>
+            <p>Tabela: <strong>${escapeHTML(cfgAtual.guiaPlanilha)}</strong> • Intervalo <strong>A1:F30</strong></p>
+          </div>
+
+          <div class="summary-badges">
+            <span class="stat-chip">Registros Exibidos: <strong>${linhasFiltradas.length}</strong></span>
+          </div>
+        </div>
+
+        <div class="subtabs-bar">
+          <div class="subtabs-list" role="tablist" aria-label="Unidades de Recursos Humanos">
+            ${abasHTML}
+          </div>
+
+          <div class="search-box">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <input type="text" id="input-busca-rh" placeholder="Filtrar em ${escapeHTML(cfgAtual.aba)}..." value="${escapeHTML(RH_STATE.termoBusca)}" />
+          </div>
+        </div>
+
+        <div class="listview-container">
+          <table class="listview-table">
+            <thead>
+              <tr>${thHTML}</tr>
+            </thead>
+            <tbody>
+              ${tbodyHTML}
+            </tbody>
+          </table>
+        </div>
+      `;
+
+      appView.querySelectorAll('.subtab-btn[data-rh-tab]').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          RH_STATE.abaAtiva = btn.getAttribute('data-rh-tab');
+          renderRecursosHumanosView(false);
+        });
+      });
+
+      const inputBusca = document.getElementById('input-busca-rh');
+      if (inputBusca) {
+        inputBusca.addEventListener('input', (e) => {
+          const cursorPos = e.target.selectionStart;
+          RH_STATE.termoBusca = e.target.value;
+          desenharInterfaceRecursosHumanos(cfgAtual);
+          const novoInput = document.getElementById('input-busca-rh');
+          if (novoInput) {
+            novoInput.focus();
+            novoInput.setSelectionRange(cursorPos, cursorPos);
+          }
+        });
+      }
+    }
+
+    // =========================================================================
+    // 5D. RENDERIZAÇÃO DA VIEW: SERVIÇO > ÁREA DE ATUAÇÃO (A33:F47)
+    // =========================================================================
+    async function renderAreaAtuacaoView(forcarRecarga = false) {
+      const appView = document.getElementById('app-view');
+      const cfgAtual = AREA_ATUACAO_STATE.abasConfig.find((item) => item.aba === AREA_ATUACAO_STATE.abaAtiva) || AREA_ATUACAO_STATE.abasConfig[0];
+      const cacheKey = cfgAtual.guiaPlanilha;
+
+      if (!CACHE_DADOS.areaAtuacao[cacheKey] || forcarRecarga) {
+        atualizarStatusSync('loading', 'Sincronizando Área...');
+        appView.innerHTML = `
+          <div class="state-box">
+            <div class="spinner"></div>
+            <div>Carregando dados da guia <strong>${escapeHTML(cfgAtual.guiaPlanilha)}</strong> (intervalo <strong>A33:F47</strong>)...</div>
+          </div>
+        `;
+
+        try {
+          const dados = await carregarAbaGoogleSheets(
+            FONTES_PLANILHAS.controleEfetivo.id,
+            cfgAtual.guiaPlanilha,
+            FONTES_PLANILHAS.controleEfetivo.areaAtuacaoRange
+          );
+          // Intervalo A33:F47 possui 15 linhas no total (1 cabecalho + ate 14 linhas)
+          const rawLimitado = (dados.rawRows || [dados.headers, ...dados.rows]).slice(0, 15);
+          const cabecalho = rawLimitado[0] || ['A', 'B', 'C', 'D', 'E', 'F'];
+          const corpo = rawLimitado.slice(1).map((r) => [0, 1, 2, 3, 4, 5].map((i) => r[i] || ''));
+
+          CACHE_DADOS.areaAtuacao[cacheKey] = {
+            headers: cabecalho,
+            rows: corpo
+          };
+          atualizarStatusSync('ok', 'Planilha Sincronizada');
+        } catch (err) {
+          atualizarStatusSync('error', 'Erro na Planilha');
+          appView.innerHTML = `
+            <div class="state-box error">
+              <strong>Não foi possível carregar os dados de Área de Atuação da guia "${escapeHTML(cfgAtual.guiaPlanilha)}".</strong><br/><br/>
+              ${escapeHTML(err.message)}<br/><br/>
+              <small>Verifique se a planilha está compartilhada como "Qualquer pessoa com o link pode visualizar" e se a aba se chama exatamente <strong>${escapeHTML(cfgAtual.guiaPlanilha)}</strong>.</small>
+            </div>
+          `;
+          return;
+        }
+      }
+
+      desenharInterfaceAreaAtuacao(cfgAtual);
+    }
+
+    function desenharInterfaceAreaAtuacao(cfgAtual) {
+      const appView = document.getElementById('app-view');
+      const { headers, rows } = CACHE_DADOS.areaAtuacao[cfgAtual.guiaPlanilha] || { headers: [], rows: [] };
+
+      const termo = AREA_ATUACAO_STATE.termoBusca.trim().toLowerCase();
+      const linhasFiltradas = termo
+        ? rows.filter((r) => r.some((cel) => String(cel).toLowerCase().includes(termo)))
+        : rows;
+
+      const abasHTML = AREA_ATUACAO_STATE.abasConfig.map((item) => {
+        const isActive = item.aba === AREA_ATUACAO_STATE.abaAtiva;
+        return `
+          <button type="button" class="subtab-btn ${isActive ? 'active' : ''}" data-area-tab="${escapeHTML(item.aba)}" title="Tabela: ${escapeHTML(item.guiaPlanilha)}">
+            <span>${escapeHTML(item.aba)}</span>
+          </button>
+        `;
+      }).join('');
+
+      const thHTML = [0, 1, 2, 3, 4, 5].map((idx) => {
+        const labelCol = headers[idx] || `Coluna ${String.fromCharCode(65 + idx)}`;
+        return `<th>${escapeHTML(labelCol)}</th>`;
+      }).join('');
+
+      let tbodyHTML = '';
+      if (linhasFiltradas.length === 0) {
+        tbodyHTML = `
+          <tr>
+            <td colspan="6" class="state-box">
+              Nenhum registro encontrado em <strong>${escapeHTML(cfgAtual.guiaPlanilha)}</strong> (A33:F47)${termo ? ` com o filtro "${escapeHTML(AREA_ATUACAO_STATE.termoBusca)}"` : ''}.
+            </td>
+          </tr>
+        `;
+      } else {
+        tbodyHTML = linhasFiltradas.map((row) => {
+          const colsHTML = [0, 1, 2, 3, 4, 5].map((colIdx) => {
+            const valor = row[colIdx] || '-';
+            if (colIdx === 0) {
+              return `<td><strong>${escapeHTML(valor)}</strong></td>`;
+            }
+            return `<td>${escapeHTML(valor)}</td>`;
+          }).join('');
+
+          return `<tr>${colsHTML}</tr>`;
+        }).join('');
+      }
+
+      appView.innerHTML = `
+        <div class="view-toolbar">
+          <div class="view-title-block">
+            <h2>Serviço — Área de Atuação (${escapeHTML(cfgAtual.aba)})</h2>
+            <p>Tabela: <strong>${escapeHTML(cfgAtual.guiaPlanilha)}</strong> • Intervalo <strong>A33:F47</strong></p>
+          </div>
+
+          <div class="summary-badges">
+            <span class="stat-chip">Registros Exibidos: <strong>${linhasFiltradas.length}</strong></span>
+          </div>
+        </div>
+
+        <div class="subtabs-bar">
+          <div class="subtabs-list" role="tablist" aria-label="Unidades de Área de Atuação">
+            ${abasHTML}
+          </div>
+
+          <div class="search-box">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <input type="text" id="input-busca-area" placeholder="Filtrar em ${escapeHTML(cfgAtual.aba)}..." value="${escapeHTML(AREA_ATUACAO_STATE.termoBusca)}" />
+          </div>
+        </div>
+
+        <div class="listview-container">
+          <table class="listview-table">
+            <thead>
+              <tr>${thHTML}</tr>
+            </thead>
+            <tbody>
+              ${tbodyHTML}
+            </tbody>
+          </table>
+        </div>
+      `;
+
+      appView.querySelectorAll('.subtab-btn[data-area-tab]').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          AREA_ATUACAO_STATE.abaAtiva = btn.getAttribute('data-area-tab');
+          renderAreaAtuacaoView(false);
+        });
+      });
+
+      const inputBusca = document.getElementById('input-busca-area');
+      if (inputBusca) {
+        inputBusca.addEventListener('input', (e) => {
+          const cursorPos = e.target.selectionStart;
+          AREA_ATUACAO_STATE.termoBusca = e.target.value;
+          desenharInterfaceAreaAtuacao(cfgAtual);
+          const novoInput = document.getElementById('input-busca-area');
+          if (novoInput) {
+            novoInput.focus();
+            novoInput.setSelectionRange(cursorPos, cursorPos);
+          }
+        });
+      }
+    }
+
+    // =========================================================================
+    // 6. ROTEAMENTO E NAVEGAÇÃO PRINCIPAL
+    // =========================================================================
+    document.addEventListener('DOMContentLoaded', () => {
+      const directNavButtons = document.querySelectorAll('.nav-item[data-route]');
+      const dropdowns = document.querySelectorAll('.nav-dropdown');
+      const dropdownToggles = document.querySelectorAll('.nav-dropdown-toggle');
+      const dropdownItems = document.querySelectorAll('.dropdown-item');
+      const allMainNavButtons = document.querySelectorAll('.nav-item');
+      const btnSync = document.getElementById('btn-sync');
+      const appView = document.getElementById('app-view');
+
+      let rotaAtual = 'home';
+
+      function clearActiveStates() {
+        allMainNavButtons.forEach((btn) => btn.classList.remove('active'));
+        dropdownItems.forEach((item) => item.classList.remove('active'));
+      }
+
+      function closeAllDropdowns() {
+        dropdowns.forEach((dd) => {
+          dd.classList.remove('open');
+          const toggle = dd.querySelector('.nav-dropdown-toggle');
+          if (toggle) toggle.setAttribute('aria-expanded', 'false');
+        });
+      }
+
+      function renderView(route, forcarRecarga = false) {
+        rotaAtual = route;
+        appView.setAttribute('data-current-view', route);
+
+        if (route === 'home') {
+          appView.innerHTML = renderHomeView();
+        } else if (route === 'viaturas-ativas') {
+          renderViaturasAtivasView(forcarRecarga);
+        } else if (route === 'inspecao-tecnica') {
+          renderInspecaoTecnicaView();
+        } else if (route === 'estatisticas-operacional') {
+          renderEstatisticasOperacionalView();
+        } else if (route === 'estatisticas-secip') {
+          renderEstatisticasSecipView();
+        } else if (route === 'recursos-humanos') {
+          renderRecursosHumanosView(forcarRecarga);
+        } else if (route === 'area-atuacao') {
+          renderAreaAtuacaoView(forcarRecarga);
+        } else {
+          appView.innerHTML = '';
+        }
+      }
+
+      directNavButtons.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          clearActiveStates();
+          closeAllDropdowns();
+          btn.classList.add('active');
+          renderView(btn.getAttribute('data-route'));
+        });
+      });
+
+      dropdownToggles.forEach((toggle) => {
+        toggle.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const parentDropdown = toggle.closest('.nav-dropdown');
+          const isOpen = parentDropdown.classList.contains('open');
+          closeAllDropdowns();
+          if (!isOpen) {
+            parentDropdown.classList.add('open');
+            toggle.setAttribute('aria-expanded', 'true');
+          }
+        });
+      });
+
+      dropdownItems.forEach((item) => {
+        item.addEventListener('click', (e) => {
+          e.stopPropagation();
+          clearActiveStates();
+          closeAllDropdowns();
+
+          item.classList.add('active');
+          const parentDropdown = item.closest('.nav-dropdown');
+          const parentToggle = parentDropdown.querySelector('.nav-dropdown-toggle');
+          if (parentToggle) parentToggle.classList.add('active');
+
+          renderView(item.getAttribute('data-route'));
+        });
+      });
+
+      btnSync.addEventListener('click', () => {
+        if (rotaAtual === 'viaturas-ativas') {
+          renderViaturasAtivasView(true);
+        } else if (rotaAtual === 'inspecao-tecnica') {
+          const iframe = document.getElementById('iframe-inspecao-tecnica');
+          if (iframe) iframe.src = RELATORIOS_EMBED.inspecaoTecnica.embedUrl;
+        } else if (rotaAtual === 'estatisticas-operacional') {
+          const iframe = document.getElementById('iframe-estatisticas-operacional');
+          if (iframe) iframe.src = RELATORIOS_EMBED.estatisticasOperacional.embedUrl;
+        } else if (rotaAtual === 'estatisticas-secip') {
+          const iframe = document.getElementById('iframe-estatisticas-secip');
+          if (iframe) iframe.src = RELATORIOS_EMBED.estatisticasSecip.embedUrl;
+        } else if (rotaAtual === 'recursos-humanos') {
+          renderRecursosHumanosView(true);
+        } else if (rotaAtual === 'area-atuacao') {
+          renderAreaAtuacaoView(true);
+        } else {
+          CACHE_DADOS.viaturas = null;
+          atualizarStatusSync('loading', 'Sincronizando...');
+          carregarAbaGoogleSheets(
+            FONTES_PLANILHAS.basedados.id,
+            FONTES_PLANILHAS.basedados.abas.viaturas,
+            'A:F'
+          )
+            .then((dados) => {
+              CACHE_DADOS.viaturas = dados;
+              atualizarStatusSync('ok', 'Planilha Sincronizada');
+            })
+            .catch(() => {
+              atualizarStatusSync('error', 'Erro na Planilha');
+            });
+        }
+      });
+
+      document.addEventListener('click', () => {
+        closeAllDropdowns();
+      });
+
+      renderView('home');
+    });
+  </script>
+</body>
+</html>
